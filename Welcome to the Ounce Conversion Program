@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int ounces;
+    int pounds;
+    int leftOunces;
+    double decimalPounds;
+
+    cout << "Welcome to the Ounce Conversion Program!" << endl;
+
+    cout << "How many ounces do you have? ";
+    cin >> ounces;
+
+    cout << "Thank you! Converting ounces to pounds." << endl;
+
+    pounds = ounces / 16;
+    leftOunces = ounces % 16;
+    decimalPounds = ounces / 16.0;
+
+    cout << ounces << " oz is equivalent to "
+         << pounds << " lbs and "
+         << leftOunces << " oz." << endl;
+
+    cout << ounces << " oz is equivalent to "
+         << decimalPounds << " lbs." << endl;
+
+    cout << "Thank you for using the OCP!" << endl;
+
+    return 0;
+}
