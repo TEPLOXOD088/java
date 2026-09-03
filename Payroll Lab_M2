@@ -1,0 +1,59 @@
+app.java
+package org.example;
+
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        final double RATE = 16.78;
+
+        System.out.println("Welcome to the Payroll Program!");
+
+        System.out.print("How many hours did you work this week? ");
+        double hours = input.nextDouble();
+
+        System.out.print("How many children do you have? ");
+        int dependents = input.nextInt();
+
+        double gross;
+
+        if (hours <= 40) {
+            gross = hours * RATE;
+        } else {
+            double overtime = hours - 40;
+            gross = (40 * RATE) + (overtime * RATE * 1.5);
+        }
+
+        double socialSecurity = gross * 0.06;
+        double federalTax = gross * 0.14;
+        double stateTax = gross * 0.05;
+        double union = 10.00;
+
+        double insurance;
+        if (dependents >= 3) {
+            insurance = 35.00;
+        } else {
+            insurance = 15.00;
+        }
+
+        double net = gross - socialSecurity - federalTax
+                - stateTax - union - insurance;
+
+        System.out.println("\nPayroll Stub:");
+        System.out.printf("Hours:   %.1f%n", hours);
+        System.out.printf("Rate:    $%.2f/hr%n", RATE);
+        System.out.printf("Gross:   $%.2f%n", gross);
+        System.out.printf("SocSec:  $%.2f%n", socialSecurity);
+        System.out.printf("FedTax:  $%.2f%n", federalTax);
+        System.out.printf("StTax:   $%.2f%n", stateTax);
+        System.out.printf("Union:   $%.2f%n", union);
+        System.out.printf("Ins:     $%.2f%n", insurance);
+        System.out.printf("Net:     $%.2f%n", net);
+
+        System.out.println("\nThank you for using the Payroll Program!");
+
+        input.close();
+    }
+}
