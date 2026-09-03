@@ -1,0 +1,46 @@
+App.java
+
+package org.example;
+
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Converter converter = new Converter();
+
+        System.out.println("Welcome to the Ounce Conversion Program!");
+        System.out.print("How many ounces do you have? ");
+
+        int ounces = input.nextInt();
+
+        System.out.println("Thank you! Converting ounces to pounds.");
+        System.out.println(ounces + " oz is equivalent to " + converter.toPoundsAndOunces(ounces) + ".");
+        System.out.println(ounces + " oz is equivalent to " + converter.toPounds(ounces) + ".");
+        System.out.println("Thank you for using the OCP!");
+
+        input.close();
+    }
+}
+
+
+Converter.java
+package org.example;
+
+public class Converter {
+
+    public String toPoundsAndOunces(int ounces) {
+        int pounds = ounces / 16;
+        int remainingOunces = ounces % 16;
+
+        return pounds + " lbs and " + remainingOunces + " oz";
+    }
+
+    public String toPounds(int ounces) {
+        double pounds = ounces / 16.0;
+
+        return pounds + " lbs";
+    }
+}
+
+
