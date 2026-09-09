@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static int getValidInput(int lowerBound, int upperBound,
+                                    String prompt, String errorMessage) {
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.print(prompt);
+        int value = input.nextInt();
+
+        while (value < lowerBound || value > upperBound) {
+            System.out.println(errorMessage);
+            System.out.print(prompt);
+            value = input.nextInt();
+        }
+
+        return value;
+    }
+
+    public static void main(String[] args) {
+
+        int number = getValidInput(
+                1,
+                100,
+                "Please enter a value: ",
+                "Your value is invalid"
+        );
+
+        System.out.println("The value chosen by the user is " + number);
+    }
+}
