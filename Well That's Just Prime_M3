@@ -1,0 +1,62 @@
+Factorizer.java
+import java.util.ArrayList;
+
+public class Factorizer {
+
+    public ArrayList<Integer> factorize(int number) {
+
+        ArrayList<Integer> factors = new ArrayList<>();
+
+        if (number <= 1) {
+            return factors;
+        }
+
+        int divisor = 2;
+
+        while (number > 1) {
+
+            if (number % divisor == 0) {
+                factors.add(divisor);
+                number = number / divisor;
+            } else {
+                divisor++;
+            }
+        }
+
+        return factors;
+    }
+}
+
+
+
+
+
+
+Main.java
+public class Main {
+
+    public static void main(String[] args) {
+
+        Factorizer factorizer = new Factorizer();
+
+        System.out.println(factorizer.factorize(100));
+        System.out.println(factorizer.factorize(35));
+        System.out.println(factorizer.factorize(24));
+        System.out.println(factorizer.factorize(17));
+        System.out.println(factorizer.factorize(1));
+    }
+}
+
+
+
+
+
+
+
+
+
+1. I tested different kinds of numbers. I tested numbers like 100 and 24 that have many factors, a prime number like 17, and numbers like 1 and 0. This helped me make sure the program works in different situations.
+
+2. I stopped testing after I tested the main types of numbers. It is impossible to test every integer. I tested enough different examples to make sure the program works correctly.
+
+
