@@ -1,0 +1,48 @@
+public class GroceryCounter {
+
+    private int count;
+    private int overflowCount;
+
+    public GroceryCounter() {
+        count = 0;
+        overflowCount = 0;
+    }
+
+    public void tens() {
+        add(1000);
+    }
+
+    public void ones() {
+        add(100);
+    }
+
+    public void tenths() {
+        add(10);
+    }
+
+    public void hundreths() {
+        add(1);
+    }
+
+    private void add(int amount) {
+        count += amount;
+
+        if (count > 9999) {
+            count -= 10000;
+            overflowCount++;
+        }
+    }
+
+    public String total() {
+        return String.format("$%d.%02d", count / 100, count % 100);
+    }
+
+    public int overflows() {
+        return overflowCount;
+    }
+
+    public void clear() {
+        count = 0;
+        overflowCount = 0;
+    }
+}
