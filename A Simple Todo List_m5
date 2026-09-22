@@ -1,0 +1,106 @@
+import java.util.ArrayList;
+
+public class TodoList {
+
+    private ArrayList<String> tasks;
+    private ArrayList<Boolean> completed;
+
+    public TodoList() {
+        tasks = new ArrayList<>();
+        completed = new ArrayList<>();
+    }
+
+    // Add a new task
+    public void add(String task) {
+        tasks.add(task);
+        completed.add(false);
+    }
+
+    // Mark a task as complete
+    public void complete(String task) {
+        int index = tasks.indexOf(task);
+
+        if (index >= 0) {
+            completed.set(index, true);
+            System.out.println(task + " is complete.");
+        } else {
+            System.out.println("Task not found.");
+        }
+    }
+
+    // Show all tasks
+    public void all() {
+        System.out.println("\nAll Tasks:");
+
+        for (int i = 0; i < tasks.size(); i++) {
+            if (completed.get(i)) {
+                System.out.println("[Complete] " + tasks.get(i));
+            } else {
+                System.out.println("[Incomplete] " + tasks.get(i));
+            }
+        }
+    }
+
+    // Show completed tasks
+    public void complete() {
+        System.out.println("\nCompleted Tasks:");
+
+        for (int i = 0; i < tasks.size(); i++) {
+            if (completed.get(i)) {
+                System.out.println(tasks.get(i));
+            }
+        }
+    }
+
+    // Show incomplete tasks
+    public void incomplete() {
+        System.out.println("\nIncomplete Tasks:");
+
+        for (int i = 0; i < tasks.size(); i++) {
+            if (!completed.get(i)) {
+                System.out.println(tasks.get(i));
+            }
+        }
+    }
+
+    // Delete all tasks
+    public void clear() {
+        tasks.clear();
+        completed.clear();
+
+        System.out.println("Todo list cleared.");
+    }
+}
+
+
+
+
+
+
+
+main.java
+public class Main {
+
+    public static void main(String[] args) {
+
+        TodoList list = new TodoList();
+
+        list.add("Do homework");
+        list.add("Go to the gym");
+        list.add("Wash the car");
+
+        list.all();
+
+        list.complete("Do homework");
+
+        list.complete();
+
+        list.incomplete();
+
+        list.clear();
+
+        list.all();
+    }
+}
+
+
