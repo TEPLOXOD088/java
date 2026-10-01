@@ -1,0 +1,172 @@
+Shape.java
+
+
+public abstract class Shape {
+
+    public abstract double getArea();
+
+    public abstract double getPerimeter();
+}
+
+
+Polygon.java
+
+
+public interface Polygon {
+
+    int numberOfSides();
+}
+
+
+Circle.java
+
+public class Circle extends Shape {
+
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double getArea() {
+        return Math.PI * radius * radius;
+    }
+
+    @Override
+    public double getPerimeter() {
+        return 2 * Math.PI * radius;
+    }
+}
+
+Rectangle.java
+
+public class Rectangle extends Shape implements Polygon {
+
+    protected double length;
+    protected double width;
+
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    public double getArea() {
+        return length * width;
+    }
+
+    @Override
+    public double getPerimeter() {
+        return 2 * (length + width);
+    }
+
+    @Override
+    public int numberOfSides() {
+        return 4;
+    }
+}
+
+Square.java
+
+public class Square extends Rectangle {
+
+    public Square(double side) {
+        super(side, side);
+    }
+}
+
+RightTriangle.java
+
+public class RightTriangle extends Shape implements Polygon {
+
+    protected double legA;
+    protected double legB;
+
+    public RightTriangle(double legA, double legB) {
+        this.legA = legA;
+        this.legB = legB;
+    }
+
+    @Override
+    public double getArea() {
+        return (legA * legB) / 2;
+    }
+
+    @Override
+    public double getPerimeter() {
+        double hypotenuse = Math.sqrt(
+            legA * legA + legB * legB
+        );
+
+        return legA + legB + hypotenuse;
+    }
+
+    @Override
+    public int numberOfSides() {
+        return 3;
+    }
+}
+
+IsoscelesRightTriangle.java
+
+public class IsoscelesRightTriangle extends RightTriangle {
+
+    public IsoscelesRightTriangle(double leg) {
+        super(leg, leg);
+    }
+}
+
+ShapeTest.java
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+public class ShapeTest {
+
+    @Test
+    public void testCircle() {
+        Circle circle = new Circle(5);
+
+        assertEquals(Math.PI * 25, circle.getArea(), 0.001);
+        assertEquals(10 * Math.PI, circle.getPerimeter(), 0.001);
+    }
+
+    @Test
+    public void testRectangle() {
+        Rectangle rectangle = new Rectangle(4, 6);
+
+        assertEquals(24, rectangle.getArea(), 0.001);
+        assertEquals(20, rectangle.getPerimeter(), 0.001);
+        assertEquals(4, rectangle.numberOfSides());
+    }
+
+    @Test
+    public void testSquare() {
+        Square square = new Square(5);
+
+        assertEquals(25, square.getArea(), 0.001);
+        assertEquals(20, square.getPerimeter(), 0.001);
+        assertEquals(4, square.numberOfSides());
+    }
+
+    @Test
+    public void testRightTriangle() {
+        RightTriangle triangle = new RightTriangle(3, 4);
+
+        assertEquals(6, triangle.getArea(), 0.001);
+        assertEquals(12, triangle.getPerimeter(), 0.001);
+        assertEquals(3, triangle.numberOfSides());
+    }
+
+    @Test
+    public void testIsoscelesRightTriangle() {
+        IsoscelesRightTriangle triangle =
+            new IsoscelesRightTriangle(5);
+
+        assertEquals(12.5, triangle.getArea(), 0.001);
+        assertEquals(10 + Math.sqrt(50),
+                     triangle.getPerimeter(), 0.001);
+        assertEquals(3, triangle.numberOfSides());
+    }
+}
