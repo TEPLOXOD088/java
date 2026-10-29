@@ -1,0 +1,37 @@
+
+import java.util.ArrayList;
+
+public class FuzzyFinder {
+
+    public int linearSearch(ArrayList<Fuzzy> fuzzies) {
+        for (int i = 0; i < fuzzies.size(); i++) {
+            if (fuzzies.get(i).color.equals("gold")) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int binarySearch(ArrayList<Fuzzy> fuzzies) {
+        int left = 0;
+        int right = fuzzies.size() - 1;
+
+        while (left <= right) {
+            int middle = left + (right - left) / 2;
+
+            String color = fuzzies.get(middle).color;
+
+            if (color.equals("gold")) {
+                return middle;
+            }
+
+            if (color.compareTo("gold") < 0) {
+                left = middle + 1;
+            } else {
+                right = middle - 1;
+            }
+        }
+
+        return -1;
+    }
+}
